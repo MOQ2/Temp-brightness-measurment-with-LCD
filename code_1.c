@@ -1,3 +1,4 @@
+
 // LCD Pin Definitions
 const int RS = 7;
 const int EN = 6;
@@ -142,7 +143,7 @@ int readAverage(int pin) {
     static int readings[10];    // Array to store readings
     static int readIndex = 0;   // Current position in array
     static long total = 0;      // Running total
-    static bool initialized = false;
+    static int initialized = 0;
 
     // Initialize array on first run
     if (!initialized) {
@@ -172,6 +173,8 @@ void setup() {
 }
 
 void loop() {
+  static int displayState = 0;  // 0 for temperature, 1 for light
+
   // === Read and average temperature ===
   int rawTemp = readAverage(TEMP_PIN);
   float voltage = rawTemp * (5.0 / 1023.0);
@@ -180,25 +183,28 @@ void loop() {
   // === Read and average light level ===
   int lightVal = readAverage(LDR_PIN);
 
-  // === Display both readings on different rows ===
-  lcdCommand(0x01); // Clear
+  // Clear display
+  lcdCommand(0x01);
   
-  // Temperature on first row with symbol
-  lcdSetCursor(0, 0);
-  lcdWriteChar(TEMP_SYMBOL); // Display temperature symbol
-  lcdPrint(": ");
-  char tempStr[10];
-  dtostrf(tempC, 4, 1, tempStr); // Convert float to string
-  lcdPrint(tempStr);
-  lcdPrint(" C");
-  
-  // Light level on second row with symbol
-  lcdSetCursor(0, 1);
-  lcdWriteChar(LIGHT_SYMBOL); // Display light/brightness symbol
-  lcdPrint(": ");
-  char lightStr[10];
-  itoa(lightVal, lightStr, 10); // Convert int to string
-  lcdPrint(lightStr);
+  if (displayState == 0) {
+    // Display temperature reading
+    lcdSetCursor(0, 0);
+    lcdWriteChar(TEMP_SYMBOL);
+    lcdPrint(": ");
+    char tempStr[10];
+    dtostrf(tempC, 4, 1, tempStr);
+    lcdPrint(tempStr);
+    lcdPrint(" C");
+  } else {
+    // Display light level reading
+    lcdSetCursor(0, 0);
+    lcdWriteChar(LIGHT_SYMBOL);
+    lcdPrint(": ");
+    char lightStr[10];
+    itoa(lightVal, lightStr, 10);
+    lcdPrint(lightStr);
+  }
   
   delay(2000);
+  displayState = !displayState;  // Toggle between 0 and 1
 }
