@@ -5,9 +5,11 @@ This project implements a dual-sensor system that measures temperature and ambie
 
 ## Demo Video
 
-
-
 Watch our system in action, demonstrating real-time temperature and brightness measurements displayed on the LCD.
+
+
+https://github.com/user-attachments/assets/6d307bb9-621f-41a9-8131-29f804a4c9d2
+
 
 ## Features
 
