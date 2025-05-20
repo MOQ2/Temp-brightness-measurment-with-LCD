@@ -1,0 +1,33 @@
+| LM35 Pin | Connection to   |
+| -------- | --------------- |
+| Left     | Arduino **5V**  |
+| Middle   | Arduino **A0**  |
+| Right    | Arduino **GND** |
+
+| LDR Pin             | Connect To                                         |
+| --------------------- | -------------------------------------------------- |
+| One side of LDR       | **5V rail on breadboard**                          |
+| Other side of LDR     | **A1** on Arduino AND **One end of 10kΩ resistor** |
+| Other end of resistor | **GND rail on breadboard**                         |
+
+
+| LCD Pin | LCD Name | Arduino Pin                   | Breadboard Info     |
+| ------- | -------- | ----------------------------- | ------------------- |
+| 1       | VSS      | GND                           | Connect to GND rail |
+| 2       | VDD      | 5V                            | Connect to 5V rail  |
+| 3       | V0       | Potentiometer Middle Pin      |                     |
+| 4       | RS       | D7                            | Digital Pin 7       |
+| 5       | RW       | GND                           | GND rail            |
+| 6       | E        | D6                            | Digital Pin 6       |
+| 11      | D4       | D5                            | Digital Pin 5       |
+| 12      | D5       | D4                            | Digital Pin 4       |
+| 13      | D6       | D3                            | Digital Pin 3       |
+| 14      | D7       | D2                            | Digital Pin 2       |
+| 15      | LED+     | 5V (optional, for backlight)  |                     |
+| 16      | LED-     | GND (optional, for backlight) |                     |
+
+| Potentiometer Pin | Connect to     |
+| ----------------- | -------------- |
+| Left Pin          | GND            |
+| Middle Pin        | LCD Pin 3 (V0) |
+| Right Pin         | 5V             |
