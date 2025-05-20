@@ -2,6 +2,13 @@
 
 This project implements a dual-sensor system that measures temperature and ambient light levels, displaying the readings on an LCD screen. The system uses an Arduino board with temperature and light sensors, providing real-time environmental monitoring with a user-friendly display.
 
+
+## Demo Video
+
+
+
+Watch our system in action, demonstrating real-time temperature and brightness measurements displayed on the LCD.
+
 ## Features
 
 - Real-time temperature measurement in Celsius
@@ -25,6 +32,7 @@ This project implements a dual-sensor system that measures temperature and ambie
 ## Pin Configuration
 
 ### LCD Connections
+
 - RS: Pin 7
 - EN: Pin 6
 - D4: Pin 5
@@ -33,6 +41,7 @@ This project implements a dual-sensor system that measures temperature and ambie
 - D7: Pin 2
 
 ### Sensor Connections
+
 - Temperature Sensor: A0
 - Light Sensor (LDR): A1
 
@@ -44,13 +53,13 @@ This project implements a dual-sensor system that measures temperature and ambie
    - Clear display formatting
 
 2. **Sensor Reading**
-   - Sliding window averaging (10 samples)
+   - Sliding window averaging (100 samples)
    - Noise reduction
    - Smooth display updates
 
 3. **Display Format**
-   - Temperature: "🌡️: XX.X C" (First row)
-   - Light Level: "☀️: XXX" (Second row)
+   - Temperature: "🌡️: XX.X C" 
+   - Light Level: "☀️: XXX" 
 
 ## Usage
 
