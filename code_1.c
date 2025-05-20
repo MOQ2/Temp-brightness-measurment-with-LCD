@@ -140,32 +140,14 @@ void createCustomCharacters() {
 
 // sliding window average
 int readAverage(int pin) {
-    static int readings[10];    // Array to store readings
-    static int readIndex = 0;   // Current position in array
-    static long total = 0;      // Running total
-    static int initialized = 0;
+  float total = 0;
 
-    // Initialize array on first run
-    if (!initialized) {
-        for (int i = 0; i < 10; i++) {
-            readings[i] = analogRead(pin);
-            total += readings[i];
-            delay(10);
-        }
-        initialized = true;
-    }
+  for (int i = 0; i < 100; i++) {
+    total += analogRead(pin);
+    delay(10); 
+  }
+  total /= 100; // Average the readings
 
-    // Subtract the oldest reading
-    total = total - readings[readIndex];
-    // Read new value
-    readings[readIndex] = analogRead(pin);
-    // Add the new reading
-    total = total + readings[readIndex];
-    // Advance to next position
-    readIndex = (readIndex + 1) % 10;
-
-    delay(10);
-    return total / 10;
 }
 
 void setup() {
@@ -190,7 +172,7 @@ void loop() {
     // Display temperature reading
     lcdSetCursor(0, 0);
     lcdWriteChar(TEMP_SYMBOL);
-    lcdPrint(": ");
+    lcdPrint("Tempretuar : ");
     char tempStr[10];
     dtostrf(tempC, 4, 1, tempStr);
     lcdPrint(tempStr);
@@ -199,7 +181,7 @@ void loop() {
     // Display light level reading
     lcdSetCursor(0, 0);
     lcdWriteChar(LIGHT_SYMBOL);
-    lcdPrint(": ");
+    lcdPrint("Light : ");
     char lightStr[10];
     itoa(lightVal, lightStr, 10);
     lcdPrint(lightStr);
